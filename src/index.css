@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── Light theme tokens ── */
+    --background: 210 20% 98%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Brand: deep orange-red inspired by heat/aircon */
+    --primary: 22 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 91% 60%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 210 40% 94%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 86% 57%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 22 100% 50%;
+    --radius: 0.75rem;
+
+    /* Sidebar */
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 215 20% 85%;
+    --sidebar-primary: 22 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 40% 16%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 40% 18%;
+    --sidebar-ring: 22 100% 50%;
+  }
+
+  .dark {
+    --background: 222 47% 8%;
+    --foreground: 210 40% 96%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 96%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 96%;
+    --primary: 22 100% 52%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217 91% 60%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 96%;
+    --destructive: 0 63% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 217 33% 20%;
+    --input: 217 33% 20%;
+    --ring: 22 100% 52%;
+    --sidebar-background: 222 47% 6%;
+    --sidebar-foreground: 215 20% 80%;
+    --sidebar-primary: 22 100% 52%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 222 47% 11%;
+    --sidebar-accent-foreground: 210 40% 96%;
+    --sidebar-border: 220 40% 12%;
+    --sidebar-ring: 22 100% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    cursor: default;
+    caret-color: transparent;
+  }
+
+  button, a, select, [role="button"], summary,
+  input[type="checkbox"], input[type="radio"] {
+    cursor: pointer;
+  }
+
+  input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]),
+  textarea, [contenteditable="true"] {
+    cursor: text;
+    caret-color: auto;
+  }
+
+  :disabled {
+    cursor: not-allowed;
+  }
+
+  html {
+    font-family: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-transparent; }
+  ::-webkit-scrollbar-thumb { @apply bg-border rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-muted-foreground/30; }
+}
+
+@layer components {
+  /* ── Metric Cards ── */
+  .metric-card {
+    @apply relative overflow-hidden rounded-2xl border bg-card p-6 shadow-sm transition-all duration-300;
+    @apply hover:shadow-md hover:-translate-y-0.5;
+  }
+
+  .metric-card-glow {
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    background: radial-gradient(ellipse at 50% 0%, hsl(var(--primary) / 0.08), transparent 70%);
+  }
+  .metric-card:hover .metric-card-glow { @apply opacity-100; }
+
+  /* ── Status badges ── */
+  .badge-status {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+
+  /* ── Table styles ── */
+  .data-table { @apply w-full text-sm; }
+  .data-table th {
+    @apply px-4 py-3 text-left font-medium text-muted-foreground whitespace-nowrap bg-muted/50 first:rounded-tl-lg last:rounded-tr-lg;
+  }
+  .data-table td { @apply px-4 py-3 border-b border-border; }
+  .data-table tr:last-child td { @apply border-0; }
+  .data-table tr:hover td { @apply bg-muted/30; }
+
+  /* ── Page header ── */
+  .page-header {
+    @apply flex flex-col gap-1 mb-6;
+  }
+  .page-title { @apply text-2xl font-semibold tracking-tight; }
+  .page-description { @apply text-sm text-muted-foreground; }
+
+  /* ── Section card ── */
+  .section-card {
+    @apply rounded-2xl border bg-card shadow-sm;
+  }
+
+  /* ── Gradient text ── */
+  .gradient-text {
+    @apply bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent;
+  }
+
+  /* ── Sidebar item ── */
+  .sidebar-item {
+    @apply flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-150 cursor-pointer;
+    color: hsl(var(--sidebar-foreground));
+  }
+  .sidebar-item:hover {
+    background-color: hsl(var(--sidebar-accent));
+    color: hsl(var(--sidebar-accent-foreground));
+  }
+  .sidebar-item.active {
+    background: linear-gradient(135deg, hsl(var(--sidebar-primary)) 0%, hsl(22 80% 45%) 100%);
+    color: hsl(var(--sidebar-primary-foreground));
+    @apply shadow-sm;
+  }
+
+  /* ── Loading skeleton ── */
+  .skeleton {
+    @apply animate-pulse rounded-lg bg-muted;
+  }
+
+  /* ── Form control label ── */
+  .form-label {
+    @apply text-sm font-medium text-foreground mb-1.5 block;
+  }
+
+  /* ── Stat number ── */
+  .stat-number {
+    @apply text-3xl font-bold tracking-tight;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
