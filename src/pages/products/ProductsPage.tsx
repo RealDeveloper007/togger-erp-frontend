@@ -241,11 +241,11 @@ function ProductFormModal({ product, onClose, onSaved }: { product: any; onClose
           </div>
           <div>
             <label className="form-label">Purchase Price (£)</label>
-            <input type="text" inputMode="decimal" className="w-full rounded-lg border bg-muted/30 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" value={form.purchasePrice} onChange={e => set('purchasePrice', e.target.value)} />
+            <input type="text" inputMode="decimal" pattern="[0-9]*\.?[0-9]*" className="w-full rounded-lg border bg-muted/30 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" value={form.purchasePrice} onChange={e => { if (/^\d*\.?\d*$/.test(e.target.value)) set('purchasePrice', e.target.value) }} />
           </div>
           <div>
             <label className="form-label">Sale Price (£)</label>
-            <input type="text" inputMode="decimal" className="w-full rounded-lg border bg-muted/30 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" value={form.salePrice} onChange={e => set('salePrice', e.target.value)} />
+            <input type="text" inputMode="decimal" pattern="[0-9]*\.?[0-9]*" className="w-full rounded-lg border bg-muted/30 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" value={form.salePrice} onChange={e => { if (/^\d*\.?\d*$/.test(e.target.value)) set('salePrice', e.target.value) }} />
           </div>
           <div>
             <label className="form-label">VAT Rate</label>
