@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
-import { ChevronDown, ChevronRight, FileText, Package, Tags, Factory, Boxes, LayoutDashboard } from 'lucide-react'
+import { ChevronDown, ChevronRight, FileText, Package, Tags, Factory, Boxes, LayoutDashboard, Receipt } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useQuery } from '@tanstack/react-query'
 import api from '@/lib/api'
@@ -11,7 +11,7 @@ const sections = [
   { title: 'Manufacturers', icon: Factory, links: [{ title: 'All manufacturers', to: '/products/manufacturers' }] },
   { title: 'Materials', icon: Boxes, links: [{ title: 'Material catalogue', to: '/products' }] },
   { title: 'Quotations', icon: FileText, links: [{ title: 'All quotations', to: '/quotations' }] },
-  { title: 'Invoices', icon: FileText, links: [{ title: 'All invoices', to: '/invoices' }] },
+  { title: 'Invoices', icon: Receipt, links: [{ title: 'All invoices', to: '/invoices' }] },
   { title: 'Stock', icon: Package, links: [{ title: 'Stock levels', to: '/stock' }] },
 ]
 
